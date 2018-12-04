@@ -1,0 +1,356 @@
+<html>
+  <head>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>Checkout with PayPal Demo</title>
+      <!--Including Bootstrap style files-->
+      <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+      <style>
+          /* http://angrytools.com/gradient/ */
+          .bg-color {
+              color: white;
+              background: -moz-linear-gradient(0deg, #004094 0%, #0096D9 50%, #004094 100%); /* ff3.6+ */
+              background: -webkit-gradient(linear, left top, right top, color-stop(0%, #004094), color-stop(50%, #0096D9), color-stop(100%, #004094)); /* safari4+,chrome */
+              background: -webkit-linear-gradient(0deg, #004094 0%, #0096D9 50%, #004094 100%); /* safari5.1+,chrome10+ */
+              background: -o-linear-gradient(0deg, #004094 0%, #0096D9 50%, #004094 100%); /* opera 11.10+ */
+              background: -ms-linear-gradient(0deg, #004094 0%, #0096D9 50%, #004094 100%); /* ie10+ */
+              background: linear-gradient(90deg, #004094 0%, #0096D9 50%, #004094 100%); /* w3c */
+              filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#004094', endColorstr='#004094',GradientType=1 ); /* ie6-9 */
+          }
+          .mark{
+              max-width: 45%;
+          }
+          .mark-input-field{
+              height:30px !important;
+          }
+      </style>
+  </head>
+  <body class="container-fluid">
+     
+      <div class="well bg-color">
+          <h2 class="text-center">Checkout with PayPal Demo</h2>
+          <h4 class="text-center">Shopping Cart Simulation using REST apis provided by chekout.js V4</h4>
+      </div>
+      <div class="container" id="normal-flow">
+      <div class="row">
+      	<div class="col-md-4">
+      		 
+             <!--Demo Product details -->
+             <table>
+             <tr><h3> DIGITAL SLR CAMERA </h3></tr>
+             <tr><img src="img/camera.jpg" width="300" height="250" class="img-responsive"/></tr>
+             <tr><td><p class="lead"> Buyer Credentials:</p></td></tr>
+             <tr><td>Email-id:&nbsp;&nbsp;&nbsp;<input type="text" id="buyer_email" class="form-control" name="buyer_email" readonly/> </td></tr>
+             <tr><td>Password:<input type="text" id="buyer_password" class="form-control" name="buyer_password" readonly/></td></tr>
+             </table>
+           </div>
+	   	<div class="col-md-8">
+	   		  <form class="form-group">
+	   		  		  <div class="">
+	                      <p class="lead"> Item Specifications:</p>
+	                      <table class="table">
+	                       <tr><td>Item Name:</td><td><input type="text" class="form-control" name="L_PAYMENTREQUEST_0_NAME0" value="DSLR Camera" readonly/></td></tr>
+	                       <tr><td>Item ID: </td><td><input type="text" class="form-control" name="L_PAYMENTREQUEST_0_NUMBER0" value="A0123" readonly/></td></tr>
+	                       <tr><td>Description:</td><td><input type="text" class="form-control" name="L_PAYMENTREQUEST_0_DESC0" value="Autofocus Camera" readonly/></td></tr>
+	                       <tr><td>Intent:</td><td><input class="mark-input-field form-control" type="text" id="paymentType" name="paymentType" value="sale" readonly/></td></tr>
+	                       <tr><td>Quantity:</td><td><input type="text" class="form-control" name="L_PAYMENTREQUEST_0_QTY0" value="1" readonly/></td></tr>
+	                       <tr><td>Price:</td><td><input type="text" class="form-control"name="PAYMENTREQUEST_0_ITEMAMT" value="10.00" readonly/></td></tr>
+	                       <tr><td>Tax:</td><td><input type="text" class="form-control" name="PAYMENTREQUEST_0_TAXAMT"  value="2" readonly/></td></tr>
+	                       <tr><td>Shipping Amount:</td><td><input type="text" class="form-control" name="PAYMENTREQUEST_0_SHIPPINGAMT" value="5" readonly/></td></tr>
+	                       <tr><td>Handling Amount:</td><td><input type="text" class="form-control" name="PAYMENTREQUEST_0_HANDLINGAMT" value="1" readonly/></td></tr>
+	                       <tr><td>Shipping Discount:</td><td><input type="text" class="form-control" name="PAYMENTREQUEST_0_SHIPDISCAMT" value="-3" readonly/></td></tr>
+	                       <tr><td>Insurance Amount:</td><td><input type="text" class="form-control" name="PAYMENTREQUEST_0_INSURANCEAMT" value="2" readonly/></td></tr>
+	                       <tr><td>Total Amount:</td><td><input type="text" class="form-control" name="PAYMENTREQUEST_0_AMT" value="17" readonly/></td></tr>
+	                    	<tr><td><input type="hidden" class="form-control" name="LOGOIMG" value="http://10.37.90.190/demoportaldev/demo/img/logo.jpg" /></td></tr>
+			            <tr><td>Currency Code:</td><td><select class="form-control" name="currencyCodeType" id="currencyCodeType" readonly>
+						<option value="USD" selected>USD</option><br></td></tr>
+		
+	                       
+	                       <tr><td colspan="2"><b>use this checkout for express checkout<br/><br/><div id="paymentMethods"></div></td></tr>
+	                       <tr><td><input style="margin-top:10px" type="button" id="proceedCheckoutButton" alt="Proceed to Checkout" class="btn btn-primary btn-large" value="Proceed to Checkout" name="checkout"></td></tr>
+						<tr></tr>
+						<tr><td ></td></tr>
+	                      </table>
+	                </div>
+	          	</form>
+	   </div>
+	   </div>
+	   </div>
+	   <div id="address-block" style="display:none">
+	   <div class="row">
+	   	<div class="col-md-5 col-md-offset-4">
+	   		<form class="form">
+              
+                  <div class="span6 inner-span" id="mark-form-container">
+                        <p class="lead">Shipping Address</p>
+                        <table class="table ">
+                       
+                        <tr><td width="30%">First Name</td><td><input class="mark-input-field form-control" type="text" id="L_PAYMENTREQUEST_FIRSTNAME" name="L_PAYMENTREQUEST_FIRSTNAME" value="Pam"/></td></tr>
+                        <tr><td>Last Name:</td><td><input class="mark-input-field form-control"  type="text" id="L_PAYMENTREQUEST_LASTNAME" name="L_PAYMENTREQUEST_LASTNAME" value="Jones"/></td></tr>
+                        <tr><td>Address</td><td><input class="mark-input-field form-control" type="text" id="PAYMENTREQUEST_0_SHIPTOSTREET" name="PAYMENTREQUEST_0_SHIPTOSTREET" value="55 East 52nd Street"/></td></tr>
+                        <tr><td>Address 1</td><td><input class="mark-input-field form-control" type="text" id="PAYMENTREQUEST_0_SHIPTOSTREET2" name="PAYMENTREQUEST_0_SHIPTOSTREET2" value="21st Floor"/></td></tr>
+                        <tr><td>City:</td><td><input class="mark-input-field form-control" type="text" id="PAYMENTREQUEST_0_SHIPTOCITY" name="PAYMENTREQUEST_0_SHIPTOCITY" value="New York" /></td></tr>
+                        <tr><td>State:</td><td><input class="mark-input-field form-control" type="text" id="PAYMENTREQUEST_0_SHIPTOSTATE" name="PAYMENTREQUEST_0_SHIPTOSTATE" value="NY" /></td></tr>
+                        <tr><td>Postal Code:</td><td><input class="mark-input-field form-control" type="text" id="PAYMENTREQUEST_0_SHIPTOZIP" name="PAYMENTREQUEST_0_SHIPTOZIP" value="10022" /></td></tr>
+                        <tr><td>Country</td><td><select class="form-control" id="PAYMENTREQUEST_0_SHIPTOCOUNTRY" name="PAYMENTREQUEST_0_SHIPTOCOUNTRY">
+							<option value="GB">United Kingdom</option>
+							<option value="US" selected>United States</option>
+							</select></td>
+						</tr>
+                        <tr><td>Telephone:</td><td><input class="mark-input-field form-control" type="text" id="PAYMENTREQUEST_0_SHIPTOPHONENUM" name="PAYMENTREQUEST_0_SHIPTOPHONENUM" value="123123123123" maxlength="12"/></td></tr>
+						
+							
+                       
+							<tr><td colspan="2"><p class="lead">Payment Methods:</p></td></tr>	
+							<tr><td colspan="2">
+								<input id="paypal_payment_option" value="paypal_express" type="radio" name="paymentMethod" title="PayPal Express Checkout" class="radio" checked>
+								<img src="https://fpdbs.paypal.com/dynamicimageweb?cmd=_dynamic-image&amp;buttontype=ecmark&amp;locale=en_US" alt="Acceptance Mark" class="v-middle">&nbsp;
+								<a href="https://www.paypal.com/us/cgi-bin/webscr?cmd=xpt/Marketing/popup/OLCWhatIsPayPal-outside" onclick="javascript:window.open('https://www.paypal.com/us/cgi-bin/webscr?cmd=xpt/Marketing/popup/OLCWhatIsPayPal-outside','olcwhatispaypal','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, ,left=0, top=0, width=400, height=350'); return false;">What is PayPal?</a>
+							</td></tr>
+							
+					
+                        </table>
+                       
+                       <div id="paymentMethodsWithReview"></div>
+
+                  </div>
+              
+            </form>
+	   	</div>
+	   </div>
+	   		
+	   		
+	   </div>
+     
+      <div id="confirmation" style="display:none">
+      	<div class="row">
+      			<div class="col-md-4 col-md-offset-4">
+      				<div>
+      					<div><h3>Review Order and Proceed to Pay</h3></div>
+      					<div>Shipping Address</div>
+      					<table class="table" style="margin-top:10px">
+      						<tr><td>Name :</td><td><span id="recipient_name"></span></td></tr>
+      						<tr><td>Address :</td><td><span id="line1"></span><span id="line2"></span></td></tr>
+   							<tr><td>City :</td><td><span id="city"></span></td></tr>
+   							<tr><td>State :</td><td><span id="state"></span></td></tr>
+   							<tr><td>Postal Code :</td><td><span id="postal_code"></span></td></tr>
+   							<tr><td>Country Code :</td><td><span id="country_code"></span></td></tr>
+      						<tr><td>Amount :</td><td><span id="amount"></span></td></tr>
+      						<tr><td>Currency :</td><td><span id="currency"></span></td></tr>
+      					</table>
+      				
+			      			<div class="loader" style="margin-left: 150px; display:none" >
+								<i  class="fa fa-refresh fa-spin" style="font-size:30px"></i>
+							</div>
+      						<input style="margin-top:10px" type="button" id="payNowButton" alt="Proceed to Checkout" class="btn btn-primary btn-large" value="Pay Now" name="checkout">
+      				</div>
+      			</div>
+      	</div>
+      </div>
+    <script src="//www.paypalobjects.com/api/checkout.js" ></script>
+ 	<script src="https://code.jquery.com/jquery.js"></script>
+ 	<script type="text/javascript">
+      function getRandomNumberInRange(min, max) {
+          return Math.floor(Math.random() * (max - min) + min);
+      }
+
+
+      var buyerCredentials = [{"email":"ron@thewall.com", "password":"qwer1234"},
+                        {"email":"sallyjones1234@gmail.com", "password":"p@ssword1234"},
+                        {"email":"joe@boe.com", "password":"123456789"},
+                        {"email":"hermione@thewall.com", "password":"123456789"},
+                        {"email":"lunalovegood@thewall.com", "password":"123456789"},
+                        {"email":"ginnyweasley@thewall.com", "password":"123456789"},
+                        {"email":"bellaswan@awesome.com", "password":"qwer1234"},
+                        {"email":"edwardcullen@gmail.com", "password":"qwer1234"}];
+      var randomBuyer = getRandomNumberInRange(0,buyerCredentials.length);
+
+      document.getElementById("buyer_email").value =buyerCredentials[randomBuyer].email;
+      document.getElementById("buyer_password").value =buyerCredentials[randomBuyer].password;
+	
+      $('#proceedCheckoutButton').on('click', function(){
+    	  $('#address-block').show();
+    	  $('#normal-flow').hide();
+    	  
+      })
+      
+   </script>
+ 	
+ 	 <script>
+        paypal.Button.render({
+
+            env: 'sandbox',
+
+            commit: false, // Show a 'Pay Now' button
+			
+            payment: function() {
+                // Set up the payment here
+                // 1. call your server side method or api to intiate the paymnets
+                var data = {
+                	"description" : $("input[name=L_PAYMENTREQUEST_0_DESC0]").val(),
+                	"shipping":$("input[name=PAYMENTREQUEST_0_SHIPPINGAMT]").val(),
+                	"tax":$("input[name=PAYMENTREQUEST_0_TAXAMT]").val(),
+                	"shipping_discount":$("input[name=PAYMENTREQUEST_0_SHIPDISCAMT]").val(),
+                	"total":$("input[name=PAYMENTREQUEST_0_AMT]").val(),
+                	"currency":$("#currencyCodeType").val(),
+                	"intent":$("input[name=paymentType]").val(),
+                	"subtotal":$("input[name=PAYMENTREQUEST_0_ITEMAMT]").val(),
+                	"name":$("input[name=L_PAYMENTREQUEST_0_NAME0]").val(),
+                	"price":$("input[name=PAYMENTREQUEST_0_ITEMAMT]").val(),
+                	"quantity":$("input[name=L_PAYMENTREQUEST_0_QTY0]").val(),
+                	"handling_fee" : $("input[name=PAYMENTREQUEST_0_HANDLINGAMT]").val(),
+                	"insurance":$("input[name=PAYMENTREQUEST_0_INSURANCEAMT]").val(),
+                	"customFlag" :"false"
+                }
+                //return paypal.request.post('/api/create-payments')
+             	return paypal.request({
+				    method: 'post',
+				    url: 'CreatePayment',
+				    json: data
+				})
+                .then(function(res) {
+					console.log(res.id);
+                    return res.id;
+                }); 
+            },
+
+            onAuthorize: function(data, actions) {
+				// Set up a url on your server to execute the payment
+				var EXECUTE_URL = 'ExecutePayments';
+			    var data = {
+	                    paymentID: data.paymentID,
+	                    payerID: data.payerID
+	                    
+	                };
+	                              
+				return actions.payment.get().then(function(paymentDetails) {
+					
+					$('#address-block').hide();
+					$("#normal-flow").hide();
+					// show the confirmation in the page section
+                	$("#recipient_name").text(paymentDetails.payer.payer_info.shipping_address.recipient_name)
+                	$("#line1").text(paymentDetails.payer.payer_info.shipping_address.line1)
+                	$("#line2").text(paymentDetails.payer.payer_info.shipping_address.line2)
+               		$("#city").text(paymentDetails.payer.payer_info.shipping_address.city)
+               		$("#state").text(paymentDetails.payer.payer_info.shipping_address.state)
+               		$("#postal_code").text(paymentDetails.payer.payer_info.shipping_address.postal_code)
+               		$("#country_code").text(paymentDetails.payer.payer_info.shipping_address.country_code)
+                	$("#amount").text(paymentDetails.transactions[0].amount.total)
+                	$("#currency").text(paymentDetails.transactions[0].amount.currency)
+               		$("#confirmation").show(); // show confirmation block 
+                	
+                	// Click Listener 	
+	                   document.querySelector('#payNowButton').addEventListener('click', function() {
+	                	   
+	                	   $('.loader').show()
+	                	   return paypal.request({
+	       				    method: 'post',
+	       				    url: 'ExecutePayments',
+	       				    json: data
+		       				}).then(function(res) {
+		                       	window.location.href="SucessPageServlet?token="+res.id+"&payerID="+res.payer.payer_info.payer_id;
+		       			       }).catch(function(err){
+		       						alert(err);
+		       				});
+	               	    })
+                	});
+                
+           
+           },
+          	 onCancel: function(data, actions) {
+          			return actions.redirect();
+				}
+
+
+        }, '#paymentMethods');
+    </script>
+    
+     <script>
+        paypal.Button.render({
+
+            env: 'sandbox', // Or 'production',
+
+            commit: true, // Show a 'Pay Now' button
+			
+            payment: function() {
+            	var shipping_amt = 0;
+            	var total = parseInt($("input[name=PAYMENTREQUEST_0_AMT]").val()) -
+            			    parseInt($("input[name=PAYMENTREQUEST_0_SHIPPINGAMT]").val())
+            		total = total + parseInt(shipping_amt);
+            
+            	// Set up the payment here
+                // 1. call your server side method or api to intiate the paymnets
+                var data = {
+                	"description" : $("input[name=L_PAYMENTREQUEST_0_DESC0]").val(),
+                	"shipping":shipping_amt,
+                	"tax":$("input[name=PAYMENTREQUEST_0_TAXAMT]").val(),
+                	"shipping_discount":$("input[name=PAYMENTREQUEST_0_SHIPDISCAMT]").val(),
+                	"total": total,
+                	"currency":$("#currencyCodeType").val(),
+                	"intent":$("input[name=paymentType]").val(),
+                	"subtotal":$("input[name=PAYMENTREQUEST_0_ITEMAMT]").val(),
+                	"name":$("input[name=L_PAYMENTREQUEST_0_NAME0]").val(),
+                	"price":$("input[name=PAYMENTREQUEST_0_ITEMAMT]").val(),
+                	"quantity":$("input[name=L_PAYMENTREQUEST_0_QTY0]").val(),
+                	"handling_fee" : $("input[name=PAYMENTREQUEST_0_HANDLINGAMT]").val(),
+                	"insurance":$("input[name=PAYMENTREQUEST_0_INSURANCEAMT]").val(),
+                	
+                	"recipient_name": $("input[name=L_PAYMENTREQUEST_FIRSTNAME]").val()+ " " + $("input[name=L_PAYMENTREQUEST_LASTNAME]").val(),
+            	    "line1": $("input[name=PAYMENTREQUEST_0_SHIPTOSTREET]").val(),
+            	    "line2": $("input[name=PAYMENTREQUEST_0_SHIPTOSTREET2]").val(),
+            	    "city": $("input[name=PAYMENTREQUEST_0_SHIPTOCITY]").val(),
+            	    "country_code":$("#PAYMENTREQUEST_0_SHIPTOCOUNTRY").val(),
+            	    "postal_code": $("input[name=PAYMENTREQUEST_0_SHIPTOZIP]").val(),
+            	    "phone": $("input[name=PAYMENTREQUEST_0_SHIPTOPHONENUM]").val(),
+            	    "state": $("input[name=PAYMENTREQUEST_0_SHIPTOSTATE]").val(),
+            	    "customFlag" : "true"
+                	    
+                }
+            	console.log(data)
+                //return paypal.request.post('/api/create-payments')
+             	return paypal.request({
+				    method: 'post',
+				    url: 'CreatePayment',
+				    json: data
+				})
+                .then(function(res) {
+					console.log(res.id);
+                    return res.id;
+                }); 
+            },
+
+            onAuthorize: function(data, actions) {
+				
+			    // Set up a url on your server to execute the payment
+				var EXECUTE_URL = 'ExecutePayments';
+
+                // Set up the data you need to pass to your server
+				//alert(data.paymentID);
+                var data = {
+                    paymentID: data.paymentID,
+                    payerID: data.payerID
+                };
+                
+                return paypal.request({
+   				    method: 'post',
+   				    url: 'ExecutePayments',
+   				    json: data
+       				}).then(function(res) {
+                       	window.location.href="SucessPageServlet?token="+res.id+"&payerID="+res.payer.payer_info.payer_id;
+       			       }).catch(function(err){
+       						alert(err);
+       				});
+                
+              
+           	},
+          	 onCancel: function(data, actions) {
+					return actions.redirect();
+				}
+
+
+        }, '#paymentMethodsWithReview');
+    </script>
+	</body>
+</html>
